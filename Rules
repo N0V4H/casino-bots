@@ -1,0 +1,37 @@
+- règles du jeu :
+
+Nombre de jeux de cartes utilisés : 6
+Le croupier reste sur un soft 17
+Double autorisé sur n'importe quelles 2 cartes
+Double après split autorisé
+Split autorisé a l'infini
+Split des As limité à une carte
+Surrender non autorisé
+Blackjack payé 3:2
+Pénétration du sabot au hasard entre 65% et 75%
+Assurance disponible
+Pas de règle "Charlie"
+
+- Données des cartes :
+
+Rang (2 à As) et valeur associée (2-10 = valeur nominale, figures = 10, As = 1 ou 11)
+La couleur/enseigne n'a aucune importance en blackjack → à ignorer complètement dans le modèle
+Composition du sabot : combien de cartes de chaque rang restent (essentiel pour le counting et le calcul exact des probabilités)
+
+- État de la partie (à chaque décision)
+
+Main du joueur (liste des cartes reçues)
+Carte visible du croupier (upcard)
+Nombre de mains actives si split (le joueur peut jouer plusieurs mains en parallèle)
+Mise en cours par main
+Cartes déjà sorties depuis le dernier rebattage (pour le counting)
+
+- Tables de stratégie de base (basic strategy)
+
+Tu auras besoin de 3 tables de référence (que tu peux soit coder en dur, soit générer par calcul d'EV) :
+
+Table "hard totals" (main sans As flexible) : action selon total joueur (4-21) × carte croupier (2-As)
+Table "soft totals" (main avec As compté 11) : même structure
+Table "pairs" (décision de split) : action selon paire × carte croupier
+
+Ces tables dépendent des règles du point 1 — une table par combinaison de règles, ou generation dynamique.
